@@ -47,7 +47,13 @@ app.get('/about', (req, res) => {
 
 // Idea Index Page
 app.get('/ideas', (req, res) => {
-  res.render('ideas/index')
+  Idea.find({})
+    .sort({date:'desc'})
+    .then(ideas => {
+      res.render('ideas/index', {
+        ideas:ideas
+      });
+    });
 });
 
 
