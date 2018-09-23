@@ -18,6 +18,8 @@ const users = require('./routes/users');
 // Passport Config
 require('./config/passport')(passport);
 
+// DB Config
+const db = require('./config/database');
 
 const app = express();
 
@@ -25,7 +27,7 @@ const app = express();
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
 // Connect to mongoose
-mongoose.connect('mongodb://vidjot:vidjot1@ds111963.mlab.com:11963/vidjot', {
+mongoose.connect(db.mongoURI, {
   useMongoClient: true
 })
   .then(() => console.log('MongoDB Connected...'))
